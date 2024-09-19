@@ -9,18 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/tempo": "^0.1.2",
+    "firebase-admin": "^12.5.0",
+    "flowbite-react": "^0.10.1",
+    "lodash": "^4.17.21",
+    "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.11"
+    "react-icons": "^5.3.0",
+    "react-media-recorder": "^1.7.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/lodash": "^4.17.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.11",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.11"
+    "typescript": "^5"
   }
 }
