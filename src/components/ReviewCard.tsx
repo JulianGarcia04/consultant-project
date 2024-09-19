@@ -33,10 +33,8 @@ function ReviewCard({
 
 	return (
 		<Card
-			className={`border-purple-200 w-96 h-80 ${
-				review ? "cursor-not-allowed" : "cursor-pointer"
-			}`}
-			onClick={!review ? handlerOnClick : undefined}
+			className={`border-purple-200 w-96 h-80 cursor-pointer`}
+			onClick={handlerOnClick}
 		>
 			<div className="w-full h-2/5">
 				<Image

@@ -11,11 +11,13 @@ function ImagePickerComments({
 	image,
 	projectID,
 	reviewID,
+	disablePicker,
 }: {
 	comments: Comment[];
 	image: string;
 	projectID: string;
 	reviewID: string;
+	disablePicker?: boolean;
 }) {
 	const groupByCoordinates = groupBy(comments, ({ x, y }) => {
 		return `${x}_${y}`;
@@ -41,6 +43,7 @@ function ImagePickerComments({
 						/>
 					) : null
 				}
+				disablePicker={disablePicker}
 			>
 				{Object.entries(groupByCoordinates).map(([key, comments], idx) => {
 					const [x, y] = key.split("_");
@@ -60,6 +63,7 @@ function ImagePickerComments({
 								reviewID={reviewID}
 								positionX={Number(x)}
 								positionY={Number(y)}
+								withoutReplay={disablePicker}
 							/>
 							;
 						</div>

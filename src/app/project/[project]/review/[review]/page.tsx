@@ -74,6 +74,7 @@ export default async function Page({ params }: Props) {
 						image={currentReview.image}
 						projectID={params.project}
 						reviewID={params.review}
+						disablePicker={currentReview.reviewed}
 					/>
 				</div>
 				<Card
@@ -99,7 +100,11 @@ export default async function Page({ params }: Props) {
 						</Button>
 						<form action={handlerAction}>
 							<input name="itemId" className="hidden" />
-							<SubmitButton label="Finalizar revisión" color="primary" />
+							<SubmitButton
+								isDisabled={currentReview.reviewed}
+								label="Finalizar revisión"
+								color="primary"
+							/>
 						</form>
 					</div>
 				</Card>

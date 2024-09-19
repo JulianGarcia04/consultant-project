@@ -22,6 +22,7 @@ interface Props {
 		positionY: number
 	) => React.ReactNode;
 	className?: string;
+	disablePicker?: boolean;
 }
 
 interface Selection_State_Reducer {
@@ -67,6 +68,7 @@ const ImagePicker = ({
 	children,
 	className,
 	pointerComponent,
+	disablePicker,
 }: Props) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const ImageRef = useRef<HTMLImageElement>(null);
@@ -100,6 +102,10 @@ const ImagePicker = ({
 	}, []);
 
 	const handleMouseClick: MouseEventHandler<HTMLCanvasElement> = (e) => {
+		if (disablePicker) {
+			return;
+		}
+
 		if (isSelecting) {
 			setIsSelecting(false);
 			return;

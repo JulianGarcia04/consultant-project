@@ -15,8 +15,6 @@ export const saveProject = (data: Omit<ProjectDto, "createAt">) => {
 export const getProjects = async (): Promise<Project[]> => {
 	const snap = await db.collection("/projects").get();
 
-	console.log("execute");
-
 	return snap.docs
 		.filter((project) => {
 			return (

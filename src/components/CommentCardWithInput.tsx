@@ -25,6 +25,7 @@ interface Props {
 	reviewID: string;
 	positionX: number;
 	positionY: number;
+	withoutReplay?: boolean;
 }
 
 export function CommentCardWithInput({
@@ -36,6 +37,7 @@ export function CommentCardWithInput({
 	positionX,
 	positionY,
 	disableCloseWithOnClick,
+	withoutReplay,
 }: Props) {
 	const [isOpenProxy, setIsOpenProxy] = useState(false);
 
@@ -103,33 +105,34 @@ export function CommentCardWithInput({
 					) : null}
 					<div className="flex flex-col gap-4">
 						{(comments?.length ?? 0) > 0 ? (
-							<form
-								method="POST"
-								action={handlerActionCreateComment}
-								className="flex flex-row justify-around w-full"
-							>
-								<TextInput
-									id="comment"
-									type="text"
-									placeholder="Reply"
-									className="w-4/5"
-									name="text"
-									required
-									onClick={(e) => {
-										e.stopPropagation();
-										cb(true);
-									}}
-								/>
-								<SubmitButton
-									color="primary"
-									className="rounded-3xl ml-2"
-									icon={<IoIosSend color="white" />}
-									onClick={(e) => {
-										e.stopPropagation();
-										cb(true);
-									}}
-								></SubmitButton>
-							</form>
+							!withoutReplay ? (
+								<form
+									method="POST"
+									action={handlerActionCreateComment}
+									className="flex flex-row justify-around w-full"
+								>
+									<TextInput
+										id="comment"
+										type="text"
+										placeholder="Reply"
+										className="w-4/5"
+										name="text"
+										required
+										onClick={(e) => {
+											e.stopPropagation();
+											cb(true);
+										}}
+									/>
+									<SubmitButton
+										color="primary"
+										className="rounded-3xl ml-2"
+										icon={<IoIosSend color="white" />}
+										onClick={() => {
+											cb(true);
+										}}
+									></SubmitButton>
+								</form>
+							) : null
 						) : (
 							<form
 								method="POST"
