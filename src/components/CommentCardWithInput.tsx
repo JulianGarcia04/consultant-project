@@ -127,7 +127,8 @@ export function CommentCardWithInput({
 										color="primary"
 										className="rounded-3xl ml-2"
 										icon={<IoIosSend color="white" />}
-										onClick={() => {
+										onClick={(e) => {
+											e.preventDefault();
 											cb(true);
 										}}
 									></SubmitButton>

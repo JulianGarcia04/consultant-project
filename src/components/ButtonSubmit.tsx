@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { MouseEventHandler, useEffect, useRef } from "react";
 import { Button } from "flowbite-react";
 
 import { useFormStatus } from "react-dom";
@@ -19,7 +19,7 @@ interface PropsComponent {
 	icon?: React.ReactNode;
 	className?: string;
 	onChangeLoading?: () => void;
-	onClick?: () => void;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 function SubmitButton({
