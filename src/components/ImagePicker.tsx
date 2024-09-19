@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, {
 	useRef,
 	useState,
-	useEffect,
 	useReducer,
 	// FormEventHandler,
 	MouseEventHandler,
@@ -12,8 +11,6 @@ import React, {
 
 interface Props {
 	imageSrc: string | StaticImageData;
-	width: number;
-	height: number;
 	children?: React.ReactNode;
 	pointerComponent: (
 		hide: boolean,
@@ -63,14 +60,11 @@ const reducer = (
 
 const ImagePicker = ({
 	imageSrc,
-	width,
-	height,
 	children,
 	className,
 	pointerComponent,
 	disablePicker,
 }: Props) => {
-	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const ImageRef = useRef<HTMLImageElement>(null);
 	const [isSelecting, setIsSelecting] = useState(false);
 
@@ -81,27 +75,7 @@ const ImagePicker = ({
 		height: 0,
 	});
 
-	useEffect(() => {
-		const canvas = canvasRef.current;
-
-		if (canvas === null) return;
-
-		const context = canvas.getContext("2d");
-
-		if (context === null) return;
-
-		// Get the `img` from reference
-		const image = ImageRef.current;
-
-		if (image === null) return;
-
-		canvas.width = width;
-		canvas.height = height;
-		// Draw the image to the context
-		context.drawImage(image, 0, 0, width, height);
-	}, []);
-
-	const handleMouseClick: MouseEventHandler<HTMLCanvasElement> = (e) => {
+	const handleMouseClick: MouseEventHandler<HTMLImageElement> = (e) => {
 		if (disablePicker) {
 			return;
 		}
@@ -126,13 +100,8 @@ const ImagePicker = ({
 				src={imageSrc}
 				priority={true}
 				alt="Image to comment on"
-				className="hidden"
-				fill
-			/>
-			<canvas
-				ref={canvasRef}
 				onClick={handleMouseClick}
-				className="border border-gray-300 rounded-lg w-full h-full"
+				fill
 			/>
 			{children}
 			{isSelecting ? (

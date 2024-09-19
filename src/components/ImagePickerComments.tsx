@@ -28,8 +28,6 @@ function ImagePickerComments({
 			<ImagePicker
 				className="relative"
 				imageSrc={image}
-				height={520}
-				width={1000}
 				pointerComponent={(hide, setHide, x, y) =>
 					hide ? (
 						<CommentCardWithInput

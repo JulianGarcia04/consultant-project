@@ -24,6 +24,7 @@ export const getComments = async (
 ): Promise<Comment[]> => {
 	const snap = await db
 		.collection(`projects/${projectID}/reviews/${reviewID}/comments`)
+		.orderBy("time", "desc")
 		.get();
 
 	return snap.docs
